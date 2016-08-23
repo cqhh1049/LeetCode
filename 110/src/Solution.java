@@ -1,17 +1,16 @@
 
 public class Solution {
-	 public boolean isBalanced(TreeNode root) {
-		 if(root==null) return true;
-		 if(root.left==null&&root.right==null){
-			 return true;
-		 }
-		 if(Math.abs(depth(root.left)-depth(root.right))>1){
-			 return false;
-		 }
-		 return isBalanced(root.left)&&isBalanced(root.right);
-	 }
-	 private int depth(TreeNode root){
-		 if(root==null) return 0;
-		 return Math.max(depth(root.left), depth(root.right))+1;
-	 }
+     public TreeNode sortedArrayToBST(int[] nums){
+    	 return sorted(nums,0,nums.length-1);
+     }
+     private TreeNode sorted(int[] nums,int left,int right){
+    	 if(left<right) return null;
+    	 int mid=(left+right)/2;
+    	 TreeNode leftNode=sorted(nums,left,mid-1);
+    	 TreeNode rightNode=sorted(nums,mid+1,right);
+    	 TreeNode node=new TreeNode(nums[mid]);
+    	 node.left=leftNode;
+    	 node.right=rightNode;
+    	 return node;
+     }
 } 
